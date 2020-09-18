@@ -1,0 +1,16 @@
+<! doctype html>
+<html>
+    <head>
+        <title>Procure me!</title>
+    </head>
+    <body>
+        <p>Welcome to Procure me ! </p>
+        <h1>This is the image you uploaded</h1><br>
+        <img src= "{{url_for('static', filename='images/t.jpg')}}" style="width:50px;height:60px;"> 
+        <form action="/identify" method="post" enctype="multipart/form-data">
+            <h1>Do you want to identify the above image?</h1>    
+            <p><input type ="submit" value="submit"/></p> </p> 
+        </form>
+    </body>
+</html>
+<!--{{url_for('static',filename='images/test.jpg')}}-->
