@@ -57,9 +57,10 @@ class Watson_identify:
             #print(i,a)
                 l.append(i)
                 a+=1
-        return l[9]
+            t=l[9].split('.')
+        return t[0]
 
 
 if __name__=="__main__":
-    ob_1=Watson_identify()
+    ob_1=Watson_identify(img='C:/Users/arsal/Desktop/test1.jpg')
     print(ob_1.watson_result())

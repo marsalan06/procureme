@@ -3,6 +3,7 @@ from flask import redirect, url_for, render_template, request
 from PIL import Image 
 from flask import Response 
 from watsonoop import Watson_identify
+from searchoop import Search_google
 app=Flask(__name__)
 app.config['UPLOAD_FOLDER']="C:/Users/arsal/Desktop/anaconda/procure_me/static/images"
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -43,8 +44,12 @@ def identify():
             print("yes "+f_name+" exists!")
             y= Watson_identify(f_name)
             pre=y.watson_result()
-            reslt= "<h1> The file is there and the result is "+str(pre)+"</h1>"
-            return reslt
+            print(pre)
+            dic={'"nuts':"nuts",'"screw':"screw",'"springs':"spring"}
+            pr=dic.get(str(pre))
+            print(pr)
+            reslt= "The file is there and the result is "+str(pr)
+            return render_template("watson_result.html",content=reslt)
         else:
             print("file "+f_name+" dosent exists :(")
             return "<h1> there is no file</h1>"
@@ -52,6 +57,11 @@ def identify():
 @app.route("/admin")
 def admin():
     return redirect(url_for("user",name="Admin Arsalan")) 
+
+@app.route("/lookitup",methods=['POST','GET'])
+def lookitup():
+    pass
+
 
 @app.after_request
 def after_request(response):

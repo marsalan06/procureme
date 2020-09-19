@@ -1,0 +1,19 @@
+<! doctype html>
+<html>
+    <head>
+        <title>Procure me!</title>
+    </head>
+    <body>
+        <p>Welcome to Procure me ! </p>
+        <h1>This is the image you uploaded</h1><br>
+        <img src= "{{url_for('static', filename='images/t.jpg')}}" style="width:50px;height:60px;"> 
+        <h1>The following results arived</h1>
+        {{content}}   
+        <form action="/lookitup/" method="post" enctype="multipart/form-data">
+            <h1>Want To Buy This: </h1> {{content.split()[-1]}}
+            <p><input type ="submit" name="Buy" value="submit"/></p> </p> 
+        </form>
+            
+        
+    </body>
+</html>
