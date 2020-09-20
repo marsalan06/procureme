@@ -49,7 +49,7 @@ def identify():
             pr=dic.get(str(pre))
             print(pr)
             reslt= "The file is there and the result is "+str(pr)
-            return render_template("watson_result.html",content=reslt)
+            return render_template("watson_result.html",content=reslt), pr
         else:
             print("file "+f_name+" dosent exists :(")
             return "<h1> there is no file</h1>"
@@ -60,8 +60,22 @@ def admin():
 
 @app.route("/lookitup",methods=['POST','GET'])
 def lookitup():
-    pass
+    from urllib import parse
+    import os
+    p,q= identify()
+    print(q)
+    if request.method=="POST":
+        domain=request.form["Domain"]
+        Regin=request.form["Region"]
+        Hits=request.form["Hits"]
+        Site=request.form["Sitename"]
+        #return f"<h1> {domain} {Regin} {Hits} {Site} </h1>"
 
+    sr_result=Search_google(q,domain,Hits,Site,Regin)
+    res=sr_result.perform_search()
+    #res=parse.quote(res)
+    print(res)
+    return render_template("sr_result.html",content=res)
 
 @app.after_request
 def after_request(response):
@@ -71,5 +85,5 @@ def after_request(response):
     return response
 
 if __name__== "__main__":
-    app.run(host='192.168.1.103',debug=True)
+    app.run(host='192.168.1.102',debug=True) #if phone 192.168.43.46, if home 192.168.1.102
 
