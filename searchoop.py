@@ -21,7 +21,7 @@ class Search_google:
             #print(l)
 
         for i in l:
-            query = str(self.descript)+ str(self.part)+str(self.region) + i
+            query = str(self.descript)+ str(self.part)+i+str(self.region)
             for j in search(query, tld="com", num=int(self.hits), stop=int(self.hits), pause=2): 
                 res.append(j)
         return(res)

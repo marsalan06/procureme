@@ -1,4 +1,6 @@
+{% extends "base.html"%}
 <! doctype html>
+{%block content%}
 <html>
     <head>
         <title>Procure me!</title>
@@ -6,11 +8,12 @@
     <body>
         <p>Welcome to Procure me ! </p>
         <h1>This is the image you uploaded</h1><br>
-        <img src= "{{url_for('static', filename='images/t.jpg')}}" style="width:50px;height:60px;"> 
+        <img src= "{{url_for('static', filename='images/t.jpg')}}" style="width:100px;height:100px;"> 
         <h1>The following result arived</h1>
-        {{content}}<br><br>
+        <h1>{{content}}</h1><br><br>
         <form action="/lookitup" method="post" enctype="multipart/form-data">
-            <h1>Want To Buy This: </h1> {{content.split()[-1]}}<br>
+            <h1>Want To Buy This: </h1> 
+            <h1>{{content.split()[-1]}}</h1><br>
             <label for="Domain">Domain of item</label>
             <select id="Domain" name="Domain">
                 <option value="Mechanical">Mechanical</option>
@@ -35,3 +38,4 @@
         
     </body>
 </html>
+{%endblock%}

@@ -7,7 +7,7 @@ from searchoop import Search_google
 app=Flask(__name__)
 app.config['UPLOAD_FOLDER']="C:/Users/arsal/Desktop/anaconda/procure_me/static/images"
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
-@app.route("/home",methods=["GET"])
+@app.route("/",methods=["GET"])
 def home():
     return render_template("index.html")
 
@@ -29,7 +29,7 @@ def upload_img():
         print(f_name)
 
         #if usr=="Arsalan" or usr=="arsalan":
-        return render_template ("base.html")
+        return render_template ("img_confirm.html")
     if request.method=="GET":
         return render_template("index.html")
 
@@ -54,9 +54,9 @@ def identify():
             print("file "+f_name+" dosent exists :(")
             return "<h1> there is no file</h1>"
 
-@app.route("/admin")
-def admin():
-    return redirect(url_for("user",name="Admin Arsalan")) 
+# @app.route("/crop")
+# def admin():
+#     return render_template("cropper2.html") 
 
 @app.route("/lookitup",methods=['POST','GET'])
 def lookitup():
@@ -81,9 +81,10 @@ def lookitup():
 def after_request(response):
     response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'
     response.headers['Pragma'] = 'no-cache'
+    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
     response.headers['Expires'] = '-1'
     return response
 
 if __name__== "__main__":
-    app.run(host='192.168.1.102',debug=True) #if phone 192.168.43.46, if home 192.168.1.102
+    app.run(host='192.168.1.101',debug=True) #if phone 192.168.43.46, if home 192.168.1.102
 

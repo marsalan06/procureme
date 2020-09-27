@@ -1,9 +1,14 @@
+{% extends "base.html"%}
 <! doctype html>
+{%block content%}
 <html>
     <head>
         <title>Procure me!</title>
     </head>
     <body>
+        <h1>
+            The following suppliers are available as per your specifications: 
+        </h1><br>
         <ul>
             {%for i in content%}
                 <li><a href='{{i}}' target="_blank">{{i}}</a> </li>
@@ -12,3 +17,4 @@
         
     </body>
 </html>
+{%endblock%}
